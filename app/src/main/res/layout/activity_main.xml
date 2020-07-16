@@ -31,6 +31,18 @@
         app:layout_constraintTop_toBottomOf="@+id/res"
         app:srcCompat="@drawable/ic_google_mic" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="325dp"
+        android:layout_height="257dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.326"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.657"
+        tools:srcCompat="@tools:sample/avatars" />
+
     <TextView
         android:id="@+id/msg"
         android:layout_width="405dp"

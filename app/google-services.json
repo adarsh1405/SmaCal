@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "277972251046",
+    "firebase_url": "https://smacal-188c8.firebaseio.com",
+    "project_id": "smacal-188c8",
+    "storage_bucket": "smacal-188c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:277972251046:android:39d7a65a31a367a7bd1f67",
+        "android_client_info": {
+          "package_name": "com.adarsh.smartcalculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "277972251046-hinctf7i6rkcnpn6juo2u9f3shqqnsk7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.adarsh.smartcalculator",
+            "certificate_hash": "386098562efb9dbfd31ce5e71dfb98160ce6fd23"
+          }
+        },
+        {
+          "client_id": "277972251046-km053caja1pve6tm6hopcj60snda3oug.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3Du8PjMx16_M5GwEbnJBw8ptoV43d7tA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "277972251046-km053caja1pve6tm6hopcj60snda3oug.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
