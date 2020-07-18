@@ -193,6 +193,7 @@ public class MainActivity extends AppCompatActivity {
         statement = statement.replaceAll ("minus", "-");
         statement = statement.replaceAll ("subtract", "-");
         statement = statement.replaceAll ("multiply by", "*");
+        statement = statement.replaceAll ("x", "*");
         statement = statement.replaceAll ("multiplied by", "*");
         statement = statement.replaceAll ("into", "*");
         statement = statement.replaceAll ("multiply", "*");
