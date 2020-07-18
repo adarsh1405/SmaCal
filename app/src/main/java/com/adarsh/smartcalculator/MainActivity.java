@@ -24,6 +24,8 @@ import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
 import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -33,8 +35,8 @@ import javax.script.ScriptEngineManager;
 public class MainActivity extends AppCompatActivity {
     TextView txt,result;
     ImageButton voice,img;
-    String statement;
-    Button clear,b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,badd,bsub,bmul,bdiv,bpoint,bequal;
+    String statement=" ";
+    Button clear,b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,badd,bsub,bmul,bdiv,bpoint,bequal,undo;
     ImageView imageView;
     Bitmap imageBitmap;
     static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -115,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
         }
     public void make_statement(View view) {
             Button b = (Button)view;
+
             statement  =statement + b.getText().toString();
             txt.setText(statement);
         }
@@ -190,6 +193,7 @@ public class MainActivity extends AppCompatActivity {
         statement = statement.replaceAll ("minus", "-");
         statement = statement.replaceAll ("subtract", "-");
         statement = statement.replaceAll ("multiply by", "*");
+        statement = statement.replaceAll ("multiplied by", "*");
         statement = statement.replaceAll ("into", "*");
         statement = statement.replaceAll ("multiply", "*");
         statement = statement.replaceAll ("divided by", "/");
@@ -202,7 +206,23 @@ public class MainActivity extends AppCompatActivity {
         try
         {
             txt.setText(statement);
-            result.setText(engine.eval(statement).toString());
+            String str=engine.eval(statement).toString();
+            if(str.equalsIgnoreCase("Infinity"))
+                result.setText("ERROR !");
+            else {
+                try{
+                    double d = Double.parseDouble(str);
+                    DecimalFormat df = new DecimalFormat("#.#####");
+                    df.setRoundingMode(RoundingMode.CEILING);
+                    str=df.format(d).toString();
+                    result.setText(str);
+                }
+                catch(NumberFormatException e){
+                    int i = Integer.parseInt(str);
+                    result.setText(i);
+                }
+            }
+
         }
         catch (Exception e)
         {
