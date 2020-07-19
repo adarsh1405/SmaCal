@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/textSpeech"
+            android:icon="@drawable/ic_baseline_record_voice_over_24"
+            android:title="Text to Speech" />
+
+        <item
+            android:id="@+id/darkMode"
+            android:icon="@drawable/ic_night_mode"
+            android:title="Dark Mode" />
+    </group>
+    <item android:title="More">
+        <menu>
+            <item
+                android:id="@+id/instruction"
+                android:icon="@drawable/ic_instruction"
+                android:title="Instructions" />
+
+            <item
+                android:id="@+id/code"
+                android:icon="@drawable/ic_app"
+                android:title="Code Snippet" />
+
+            <item
+                android:id="@+id/about"
+                android:icon="@drawable/ic_about"
+                android:title="About" />
+
+            <item
+                android:id="@+id/share"
+                android:icon="@drawable/ic_share"
+                android:title="Share" />
+        </menu>
+    </item>
+
+
+</menu>

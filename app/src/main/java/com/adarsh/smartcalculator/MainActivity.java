@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -44,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         txt=findViewById(R.id.msg);
         voice=findViewById(R.id.voice);
         img=findViewById(R.id.scan);
@@ -115,6 +120,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         }
+
+
     public void make_statement(View view) {
             Button b = (Button)view;
 
