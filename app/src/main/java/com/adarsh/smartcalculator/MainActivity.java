@@ -4,22 +4,28 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.speech.RecognizerIntent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
@@ -33,14 +39,18 @@ import java.util.Locale;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
     TextView txt,result;
     ImageButton voice,img;
     String statement=" ";
     Button clear,b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,badd,bsub,bmul,bdiv,bpoint,bequal,undo;
     ImageView imageView;
     Bitmap imageBitmap;
+    Switch stxt;
     static final int REQUEST_IMAGE_CAPTURE = 1;
+
+    private DrawerLayout drawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +58,22 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer , toolbar,
+                R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
+        navigationView.setNavigationItemSelectedListener(this);
+//        if(savedInstanceState == null){
+//            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new homeFragment()).commit();
+//            navigationView.setCheckedItem(R.id.home);
+//        }
+
+
+
+//        stxt= findViewById(R.id.switchtxt);
         txt=findViewById(R.id.msg);
         voice=findViewById(R.id.voice);
         img=findViewById(R.id.scan);
@@ -119,20 +144,51 @@ public class MainActivity extends AppCompatActivity {
                 bequal.setVisibility(v.INVISIBLE);
             }
         });
-        }
 
+        }
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.home:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new homeFragment()).commit();
+                break;
+            case R.id.instruction :
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new rules()).commit();
+                break;
+            case R.id.about :
+                break;
+            case R.id.textSpeech :
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new rules()).commit();
+                break;
+            case R.id.dark :
+                break;
+            case R.id.code :
+                break;
+            case R.id.share :
+                break;
+        }
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+    @Override
+    public void onBackPressed() {
+        if(drawer.isDrawerOpen(GravityCompat.START))
+            drawer.closeDrawer(GravityCompat.START);
+        else
+        super.onBackPressed();
+
+    }
 
     public void make_statement(View view) {
-            Button b = (Button)view;
+        Button b = (Button)view;
 
-            statement  =statement + b.getText().toString();
-            txt.setText(statement);
-        }
-        public void evaluate(View view)throws  Exception{
-            Button b = (Button)view;
-            calcspeech();
-        }
-
+        statement  =statement + b.getText().toString();
+        txt.setText(statement);
+    }
+    public void evaluate(View view)throws  Exception{
+        Button b = (Button)view;
+        calcspeech();
+    }
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -144,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_WEB_SEARCH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
         if(intent.resolveActivity(getPackageManager())!=null)
-        startActivityForResult(intent,10);
+            startActivityForResult(intent,10);
         else
             Toast.makeText(this, "Your Device not Support Speech Input", Toast.LENGTH_SHORT).show();
     }
@@ -183,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
         switch (requestCode){
             case 10:
                 if(resultCode == RESULT_OK && data!= null){
-                   ArrayList<String> res= data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    ArrayList<String> res= data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     statement=res.get(0).toString();
 //                    txt.setText(statement);
                     try {
@@ -237,5 +293,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Cant Evaluate", Toast.LENGTH_SHORT).show();
         }
     }
+
 
 }

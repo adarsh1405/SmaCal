@@ -4,15 +4,24 @@
     tools:showIn="navigation_view">
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/home"
+            android:icon="@drawable/ic_home"
+            android:title="Home" />
+
+        <item
             android:id="@+id/textSpeech"
             android:icon="@drawable/ic_baseline_record_voice_over_24"
             android:title="Text to Speech" />
+
+<!--        <Switch android:layout_height="match_parent"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:id="@id/switchTxt"/>-->
 
         <item
             android:id="@+id/darkMode"
             android:icon="@drawable/ic_night_mode"
             android:title="Dark Mode" />
-    </group>
+
     <item android:title="More">
         <menu>
             <item
@@ -37,5 +46,6 @@
         </menu>
     </item>
 
+    </group>
 
 </menu>
