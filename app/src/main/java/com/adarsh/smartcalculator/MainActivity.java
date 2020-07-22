@@ -5,9 +5,11 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.speech.RecognizerIntent;
+import android.view.ActionMode;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Switch;
@@ -18,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -49,8 +52,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Bitmap imageBitmap;
     Switch stxt;
     static final int REQUEST_IMAGE_CAPTURE = 1;
-
+    SwitchCompat drawerSwitch;
     private DrawerLayout drawer;
+
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,13 +74,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
         toggle.getDrawerArrowDrawable().setColor(getResources().getColor(android.R.color.white));
         navigationView.setNavigationItemSelectedListener(this);
-//        if(savedInstanceState == null){
-//            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new homeFragment()).commit();
-//            navigationView.setCheckedItem(R.id.home);
-//        }
 
 
-//        stxt= findViewById(R.id.switchtxt);
+
+
+
         txt = findViewById(R.id.msg);
         voice = findViewById(R.id.voice);
         img = findViewById(R.id.scan);
@@ -156,18 +159,46 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new homeFragment()).commit();
                 break;
             case R.id.instruction:
-            case R.id.textSpeech:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new rules()).commit();
+                break;
+            case R.id.textSpeech:
+
+                
+//                MenuItem menuItem = navigationView.getMenu().findItem(R.id.textSpeech);
+//                Switch drawerSwitch = (Switch) menuItem.getActionView().findViewById(R.id.drawer_switch);
+//                drawerSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//                    @Override
+//                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                        if(isChecked)
+//                            Toast.makeText(MainActivity.this, "ON", Toast.LENGTH_SHORT).show();
+//                        else
+//                            Toast.makeText(MainActivity.this, "OFF", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
                 break;
             case R.id.about:
             case R.id.dark:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new rules()).commit();
+            break;
             case R.id.code:
             case R.id.share:
                 break;
+            case R.id.drawer_switch:
+               
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        navigationView.setCheckedItem(R.id.textSpeech);
+//        navigationView.getMenu().performIdentifierAction(R.id.textSpeech , 0);
+//        if(toogle.onOptionItemSelected(item))
+//            return true;
+//        else
+//            return super.onOptionsItemSelected(item);
+//    }
 
     @Override
     public void onBackPressed() {
