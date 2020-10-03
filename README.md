@@ -4,7 +4,7 @@ SmaCal is a android application designed with Machine learning based modules wit
 
 Watch the demo of the app on the youtube. [click here](https://www.youtube.com/watch?v=OleeFuBYfSo)
 
-You can download the old version of the app . [Click here]()
+You can download the old version of the app . [Click here](https://bit.ly/SmaCalApp)
 
 ### Key Features include
 - Less weight(5 MB approx)
