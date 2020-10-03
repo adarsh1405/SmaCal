@@ -23,6 +23,4 @@ You can download the old version of the app . [Click here]()
 - bug fixation
 
 ### Here are some of the Screenshots here of the app
-![Main Page](https://github.com/adarsh1405/SmaCal/blob/master/Assests/IMG_20201003_113222.jpg)
-![Navigation Drawer](https://github.com/adarsh1405/SmaCal/blob/master/Assests/IMG_20201003_113243.jpg)
-![Image-to-Text](https://github.com/adarsh1405/SmaCal/blob/master/Assests/IMG_20201003_113320.jpg)
+![](https://github.com/adarsh1405/SmaCal/blob/master/Assests/img_20201003_113222.jpg)![](https://github.com/adarsh1405/SmaCal/blob/master/Assests/img_20201003_113243.jpg)  ![](https://github.com/adarsh1405/SmaCal/blob/master/Assests/img_20201003_113320.jpg)
